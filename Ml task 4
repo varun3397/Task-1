@@ -1,0 +1,31 @@
+import warnings
+warnings.filterwarnings('ignore')
+
+import keras
+import matplotlib.pyplot as plt # for plotting
+import os # provides a way of using operating system dependent functionality
+import cv2 #Image handling library
+import numpy as np
+
+# Import of keras model and hidden layers for our convolutional network
+from keras.layers import Conv2D, Activation, MaxPool2D, Dense, Flatten, Dropout
+Using TensorFlow backend.
+CATEGORIES = ["01_palm", '02_l','03_fist','04_fist_moved','05_thumb','06_index','07_ok','08_palm_moved','09_c','10_down']
+IMG_SIZE = 50
+
+# paths for dataset
+data_path = "../input/leapgestrecog/leapGestRecog"
+The Data
+# Loading the images and their class(0 - 9)
+image_data = []
+for dr in os.listdir(data_path):
+    for category in CATEGORIES:
+        class_index = CATEGORIES.index(category)
+        path = os.path.join(data_path, dr, category)
+        for img in os.listdir(path):
+            try:
+                img_arr = cv2.imread(os.path.join(path, img), cv2.IMREAD_GRAYSCALE)
+                image_data.append([cv2.resize(img_arr, (IMG_SIZE, IMG_SIZE)), class_index])
+            except Exception as e:
+                pass
+image_data[0]
