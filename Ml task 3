@@ -1,0 +1,41 @@
+import csv
+import itertools
+import os
+import random
+import re
+import zipfile
+
+from subprocess import check_output
+
+import cv2
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import missingno as msno
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import seaborn as sns
+import skimage as ski
+import sklearn.metrics as metrics
+import sklearn.model_selection as model_selection
+from keras.layers import Conv2D, Dense, Dropout, Flatten, MaxPooling2D
+from keras.models import Sequential
+from numpy import array
+from PIL import Image, ImageFilter
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVC, SVC
+from sklearn import svm
+from skimage.io import imread
+from skimage.transform import resize
+
+import tensorflow as tf
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
